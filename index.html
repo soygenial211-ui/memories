@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0B1220" />
+<title>Nuestra Caja de Recuerdos</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Modal: cargando / procesando -->
+<div id="modal-loading" class="modal hidden" role="status" aria-live="polite">
+  <div class="modal-card loading-card">
+    <div class="spinner"></div>
+    <p class="loading-text">RECORDANDO...</p>
+  </div>
+</div>
+
+<!-- Modal: error genérico (contraseña incorrecta, fecha no cumplida, fallo de conexión) -->
+<div id="modal-error" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <button class="modal-close" data-close="modal-error" aria-label="Cerrar">&times;</button>
+    <p id="error-text" class="lock-msg"></p>
+  </div>
+</div>
+
+<!-- PANTALLA 1: Bienvenida / instrucciones -->
+<section id="screen-welcome" class="screen">
+  <div class="screen-inner center-col">
+    <h1><span class="m-letter">M</span>emorias</h1>
+    <p class="subtitle">Un mapa de nosotros, lugar por lugar</p>
+    <p id="welcome-text" class="welcome-text"></p>
+    <button id="btnRecordar" class="btn-primary">RECORDAR</button>
+  </div>
+</section>
+
+<!-- PANTALLA 3: Camino de lugares (zigzag vertical) -->
+<section id="screen-map" class="screen hidden">
+  <button id="btnInfo" class="btn-info" aria-label="Ver instrucciones">?</button>
+  <div class="map-scroll">
+    <div class="path-container" id="pathContainer">
+      <div class="path-line"></div>
+      <div id="pathNodes"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PANTALLA 4: Cuadrícula de un lugar (pantalla completa) -->
+<section id="screen-place" class="screen hidden">
+  <div class="place-header">
+    <button id="btnBackMap" class="btn-back" aria-label="Volver al mapa">&larr;</button>
+    <h2 id="place-grid-title"></h2>
+  </div>
+  <div class="place-scroll">
+    <div id="place-grid" class="grid"></div>
+  </div>
+</section>
+
+<!-- Modal: candado (fecha / password) — reutilizable para lugar o recuerdo -->
+<div id="modal-lock" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card unlock-card">
+    <button class="modal-close" data-close="modal-lock" aria-label="Cerrar">&times;</button>
+    <h2 id="lock-title"></h2>
+
+    <div id="lock-date-block" class="hidden">
+      <p class="lock-msg" id="lock-date-hint"></p>
+    </div>
+
+    <div id="lock-password-block" class="hidden">
+      <p class="lock-msg" id="lock-pass-hint"></p>
+      <input
+        id="lock-pass-input"
+        class="pass-input"
+        type="text"
+        inputmode="text"
+        autocapitalize="characters"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="Escribe contraseña"
+      />
+      <button id="lockSubmit" class="btn-primary btn-full">Abrir</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: recuerdo individual revelado -->
+<div id="modal-view" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card" id="view-card">
+    <button class="modal-close" data-close="modal-view" aria-label="Cerrar">&times;</button>
+    <img id="view-img" src="" alt="" />
+    <p id="view-text"></p>
+  </div>
+</div>
+
+<div id="particle-layer"></div>
+
+<script src="bienvenida.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
