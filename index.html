@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0B1220" />
+<title>Próximamente — Memorias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1220;
+    --gold: #C9A24B;
+    --gold-soft: rgba(201, 162, 75, 0.35);
+    --text: #F5EFE0;
+    --text-dim: #5B6B8C;
+    --serif: 'Fraunces', serif;
+    --sans: 'Karla', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: radial-gradient(ellipse at top, #10192e 0%, var(--bg) 60%);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow: hidden;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: 30px;
+    position: relative;
+  }
+
+  .stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+    animation: twinkle 3.5s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(0.8); }
+    50% { opacity: 0.9; transform: scale(1.3); }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 460px;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: var(--gold);
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.3rem, 9vw, 3.4rem);
+    margin: 0 0 6px;
+  }
+  .m-letter { color: var(--gold); font-style: italic; }
+
+  .proximamente {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    color: var(--gold);
+    margin: 4px 0 26px;
+    letter-spacing: 0.02em;
+  }
+
+  .slogan {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    opacity: 0.92;
+    margin: 0 0 34px;
+  }
+
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-soft);
+    box-shadow: 0 0 22px -2px var(--gold-soft);
+    animation: pulseSeal 2.8s ease-in-out infinite;
+    margin-bottom: 8px;
+  }
+  .seal span { color: var(--gold); font-size: 1.3rem; }
+  @keyframes pulseSeal {
+    0%, 100% { box-shadow: 0 0 14px -4px var(--gold-soft); }
+    50% { box-shadow: 0 0 26px 2px var(--gold-soft); }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="content">
+  <div class="seal"><span>✦</span></div>
+  <div class="eyebrow">Algo se está construyendo</div>
+  <h1><span class="m-letter">M</span>emorias</h1>
+  <p class="proximamente">Próximamente</p>
+  <p class="slogan">Un mapa que solo tú vas a poder recorrer.<br>Cada lugar guarda algo nuestro.</p>
+</div>
+
+<script>
+  const stars = document.getElementById('stars');
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = (Math.random() * 3.5) + 's';
+    s.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
+    stars.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
